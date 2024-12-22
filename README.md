@@ -1,2 +1,2 @@
 This is a simple Text to Speech App for Android.
-It uses the internal Text to Speech funktion and dont require a Internet connection.
+It uses the internal Text to Speech funktion and doesn't require a Internet connection.
