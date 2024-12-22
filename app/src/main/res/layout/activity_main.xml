@@ -15,7 +15,8 @@
         android:id="@+id/editText"
         android:layout_width="379dp"
         android:layout_height="304dp"
-        android:hint="Enter text to speak"
+        android:hint="@string/enter_text_to_speak"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:keepScreenOn="true"
         android:singleLine="false"
@@ -31,6 +32,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:backgroundTint="#4CAF50"
-        android:text="Speak" />
+        android:text="@string/speak" />
 
 </LinearLayout>

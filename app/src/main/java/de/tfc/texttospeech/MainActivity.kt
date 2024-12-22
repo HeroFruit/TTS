@@ -48,7 +48,7 @@ class MainActivity : Activity(), OnInitListener {
 
     private fun speakOut() {
         val text = editText!!.text.toString()
-        if (!text.isEmpty()) {
+        if (text.isNotEmpty()) {
             tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
         } else {
             Toast.makeText(this, "Please enter text to speak", Toast.LENGTH_SHORT).show()
