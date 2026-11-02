@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">Text to Speech</string>
-    <string name="enter_text_to_speak">Enter text to speak</string>
+    <string name="enter_text_to_speak">Type or paste text here...</string>
     <string name="speak">Speak</string>
+    <string name="stop">Stop</string>
+    <string name="speech_rate">Speech Rate</string>
+    <string name="pitch">Pitch</string>
+    <string name="language">Language</string>
+    <string name="presets">Quick Phrases</string>
+    <string name="history">Recent History</string>
+    <string name="clear">Clear</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="text_empty">Please enter text to speak</string>
+    <string name="tts_init_failed">TTS Initialization Failed</string>
+    <string name="lang_not_supported">Language not supported</string>
 </resources>

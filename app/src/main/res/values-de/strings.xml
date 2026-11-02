@@ -1,6 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Text to Speech</string>
-    <string name="enter_text_to_speak">Text eingeben zum Sprechen</string>
+    <string name="enter_text_to_speak">Text hier eingeben oder einfügen...</string>
     <string name="speak">Sprechen</string>
+    <string name="stop">Stop</string>
+    <string name="speech_rate">Geschwindigkeit</string>
+    <string name="pitch">Tonhöhe</string>
+    <string name="language">Sprache</string>
+    <string name="presets">Schnell-Phrasen</string>
+    <string name="history">Letzte Eingaben</string>
+    <string name="clear">Löschen</string>
+    <string name="copy">Kopieren</string>
+    <string name="paste">Einfügen</string>
+    <string name="copied_to_clipboard">In die Zwischenablage kopiert</string>
+    <string name="text_empty">Bitte Text zum Sprechen eingeben</string>
+    <string name="tts_init_failed">TTS-Initialisierung fehlgeschlagen</string>
+    <string name="lang_not_supported">Sprache nicht unterstützt</string>
 </resources>
