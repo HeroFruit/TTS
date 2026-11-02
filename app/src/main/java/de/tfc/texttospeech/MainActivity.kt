@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -28,14 +29,14 @@ import java.util.Locale
 
 class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
-    private var isTtsInitialized by mutableStateOf(false)
+    private var isTtsInitialized by mutableStateOf(value = false)
 
     // State exposed to Compose
     var textState = mutableStateOf("")
     var speechRateState = mutableFloatStateOf(1.0f)
     var pitchState = mutableFloatStateOf(1.0f)
     var selectedLocaleState = mutableStateOf(Locale.getDefault())
-    var isSpeakingState = mutableStateOf(false)
+    var isSpeakingState = mutableStateOf(value = false)
     var historyState = mutableStateOf(listOf<String>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
                 isSpeakingState.value = false
             }
 
-            @Suppress("DEPRECATION")
+            @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
             override fun onError(utteranceId: String?) {
                 isSpeakingState.value = false
             }
@@ -72,7 +73,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
                         isSpeaking = isSpeakingState,
                         history = historyState,
                         onSpeak = { speakOut(it) },
-                        onStop = { stopSpeaking() }
+                        onStop = { stopSpeaking() },
                     )
                 }
             }
@@ -82,7 +83,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             val result = tts?.setLanguage(selectedLocaleState.value)
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            if ((result == TextToSpeech.LANG_MISSING_DATA) || (result == TextToSpeech.LANG_NOT_SUPPORTED)) {
                 Log.e("TTS", getString(R.string.lang_not_supported))
                 Toast.makeText(this, getString(R.string.lang_not_supported), Toast.LENGTH_SHORT).show()
             } else {
@@ -143,23 +144,6 @@ fun MainScreen(
     val clipboardManager = LocalClipboardManager.current
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val quickPhrasesEn = listOf(
-        "Hello, how can I help you today?",
-        "Thank you very much!",
-        "Have a wonderful day!",
-        "Please speak a bit slower."
-    )
-
-    val quickPhrasesDe = listOf(
-        "Hallo, wie kann ich Ihnen heute helfen?",
-        "Vielen herzlichen Dank!",
-        "Ich wünsche Ihnen einen wunderbaren Tag!",
-        "Bitte sprechen Sie etwas langsamer."
-    )
-
-    val isGerman = selectedLocale.value.language.startsWith("de")
-    val currentPresets = if (isGerman) quickPhrasesDe else quickPhrasesEn
-
     val locales: List<Pair<Locale, String>> = listOf(
         Pair(Locale.getDefault(), "System Default"),
         Pair(Locale.ENGLISH, "English"),
@@ -175,7 +159,7 @@ fun MainScreen(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            imageVector = Icons.Default.VolumeUp,
+                            imageVector = Icons.AutoMirrored.Filled.VolumeUp,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(28.dp)
@@ -266,28 +250,6 @@ fun MainScreen(
                                     Text(stringResource(R.string.copy))
                                 }
                             }
-                        }
-                    }
-                }
-            }
-
-            // Quick Phrases (Presets)
-            item {
-                Column {
-                    Text(
-                        text = stringResource(R.string.presets),
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(bottom = 8.dp)
-                    )
-                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        items(currentPresets) { phrase ->
-                            AssistChip(
-                                onClick = { textState.value = phrase },
-                                label = { Text(phrase) },
-                                leadingIcon = {
-                                    Icon(Icons.Default.ChatBubbleOutline, contentDescription = null, modifier = Modifier.size(16.dp))
-                                }
-                            )
                         }
                     }
                 }
@@ -394,7 +356,7 @@ fun MainScreen(
                         )
                     ) {
                         Icon(
-                            imageVector = if (isSpeaking.value) Icons.Default.Stop else Icons.Default.VolumeUp,
+                            imageVector = if (isSpeaking.value) Icons.Default.Stop else Icons.AutoMirrored.Filled.VolumeUp,
                             contentDescription = null
                         )
                         Spacer(modifier = Modifier.width(8.dp))
